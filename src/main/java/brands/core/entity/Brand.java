@@ -18,15 +18,27 @@ import java.io.Serializable;
 @Setter
 public class Brand extends AbstractEntity<Long> implements Serializable {
 
+    /**
+     * ユーザ
+     */
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @IndexedEmbedded(includeEmbeddedObjectId = true)
     private User user;
 
+    /**
+     * ブランド名
+     */
     @Column(length = 100, nullable = false)
     private String brandName;
 
+    /**
+     * デザイナー名
+     */
     @Column(length = 100, nullable = false)
     private String designer;
 
+    /**
+     * 住所
+     */
     private Address address = new Address();
 }

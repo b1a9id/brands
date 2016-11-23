@@ -1,0 +1,86 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" th:href="@{/webjars/Semantic-UI/2.1.8/semantic.min.css}"/>
+  <link rel="stylesheet" th:href="@{/resources/css/style.css}"/>
+
+  <script th:src="@{/webjars/jquery/2.2.0/jquery.min.js}"></script>
+  <script th:src="@{/webjars/Semantic-UI/2.1.8/semantic.min.js}"></script>
+  <script th:src="@{/resources/lib/jquery.sliphover.min.js}"></script>
+
+  <link rel="stylesheet" href="/static/resources/lib/Semantic-UI/2.1.8/semantic.min.css"/>
+  <script src="/static/resources/lib/jquery.min.js"></script>
+  <script src="/static/resources/lib/Semantic-UI/2.1.8/semantic.min.js"></script>
+
+  <title>ユーザ一覧</title>
+</head>
+<body>
+<div class="ui text container">
+  <div colspan="4">
+    <a th:href="@{/logout}"><div class="ui right floated small red labeled icon button"><i class="sign out icon"></i>ログアウト</div></a>
+  </div>
+  <h2 class="ui header aligned blue">ユーザ一覧</h2>
+  <!--<form method="post" th:action="@{/users}" th:object="${form}">-->
+    <!--<div class="ui search">-->
+      <!--<div class="ui icon input small">-->
+        <!--<input class="prompt" th:field="*{name}" type="text" placeholder="名前を入力"/>-->
+      <!--</div>-->
+      <!--<div class="ui icon input small">-->
+        <!--<select class="ui search dropdown" th:field="*{gender}">-->
+          <!--<option value="">性別を選択</option>-->
+          <!--<option th:each="gender : ${genders}" th:text="#{|user.field.gender.${gender}|}" th:value="${gender}"></option>-->
+        <!--</select>-->
+      <!--</div>-->
+      <!--<button class="ui small button">検索</button>-->
+    <!--</div>-->
+  <!--</form>-->
+  <div class="ui success message" th:if="${savedUser}">
+    <div><p th:text="|${savedUser.name}を登録しました！|"></p></div>
+  </div>
+  <div class="ui success message" th:if="${updatedUser}">
+    <div><p th:text="|${updatedUser.name}を更新しました！|"></p></div>
+  </div>
+  <div class="ui success message" th:if="${deletedUser}">
+    <div><p th:text="|${deletedUser}を削除しました！|"></p></div>
+  </div>
+  <p th:if="${#lists.isEmpty(users)}" th:text="#{user.search.result.empty}">なし</p>
+  <table th:unless="${#lists.isEmpty(users)}" class="ui celled blue table">
+    <thead>
+    <tr>
+      <th th:text="#{user.field.name.label}">名前</th>
+      <th th:text="#{user.field.age.label}">年齢</th>
+      <th th:text="#{user.field.gender.label}">性別</th>
+      <th th:text="#{address.field.zip.label}">郵便番号</th>
+      <th th:text="#{address.field.prefecture.label}">都道府県</th>
+      <!--<th th:text="#{user.field.brand.label}">好きなブランド</th>-->
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.name}">山田太郎</td>
+      <td th:text="${user.age}">20</td>
+      <td th:text="#{|user.field.gender.${user.gender}|}">男性</td>
+      <td th:text="${user.address.zip}">100-0001</td>
+      <td th:text="${user.address.prefecture}">宮崎県</td>
+      <!--<td th:text="${user.brand}">20</td>-->
+      <td>
+        <a th:href="@{/users/edit/{id}(id=${user.id})}"><button class="ui orange basic button">編集</button></a>
+      </td>
+      <td>
+        <form method="post" th:action="@{/users/delete/{id}(id=${user.id})}">
+          <input type="hidden" name="_method" value="delete"/>
+          <button class="ui grey basic button">削除</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div colspan="4">
+      <a th:href="@{/users/new}"><div class="ui right floated small primary labeled icon button"><i class="user icon"></i>新規登録</div></a>
+  </div>
+</div>
+</body>
+</html>

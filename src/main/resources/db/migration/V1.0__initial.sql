@@ -1,7 +1,6 @@
 CREATE TABLE user (
   id                      BIGINT auto_increment NOT NULL,
   name                    VARCHAR(100) NOT NULL,
-  name_kana               VARCHAR(100) NOT NULL,
   age                     INTEGER,
   gender                  VARCHAR(10) NOT NULL,
   address_zip             VARCHAR(20),
@@ -23,9 +22,9 @@ create table brand (
 
 alter table brand add constraint FKmp088cw47tdpyq89xqv7qa49m foreign key (user_id) references User (id);
 
-INSERT INTO user (id, name, name_kana, age, gender, address_zip, address_prefecture) VALUES (1, '葵', 'あおい', 18, 'WOMAN', '100-0001', '東京都');
-INSERT INTO user (id, name, name_kana, age, gender, address_zip, address_prefecture) VALUES (2, '良介', 'りょうすけ', 26, 'FREE', '123-4567', '宮崎県');
-INSERT INTO user (id, name, name_kana, age, gender, address_zip, address_prefecture) VALUES (3, '悠真', 'ゆうま', 32, 'MAN', '222-3333', '神奈川県');
+INSERT INTO user (id, name, age, gender, address_zip, address_prefecture) VALUES (1, '葵', 18, 'WOMAN', '100-0001', '東京都');
+INSERT INTO user (id, name, age, gender, address_zip, address_prefecture) VALUES (2, '良介', 26, 'FREE', '123-4567', '宮崎県');
+INSERT INTO user (id, name, age, gender, address_zip, address_prefecture) VALUES (3, '悠真', 32, 'MAN', '222-3333', '神奈川県');
 
 INSERT INTO brand (user_id, brandName, designer, address_prefecture, address_zip) VALUES (1, 'Dulcamara', '與田尚子', '987-6543','大阪府');
 INSERT INTO brand (user_id, brandName, designer, address_prefecture, address_zip) VALUES (1, 'STOF', '谷田浩', '123-3333', '東京都');

@@ -18,19 +18,28 @@ import java.util.List;
 @Getter
 @Setter
 public class User extends AbstractEntity<Long> implements Serializable {
+    /**
+     * 名前
+     */
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 100, nullable = false)
-    private String nameKana;
-
+    /**
+     * 年齢
+     */
     private Integer age;
 
+    /**
+     * 性別
+     */
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
     @Field(analyze = Analyze.NO)
     private Gender gender;
 
+    /**
+     * 住所
+     */
     private Address address = new Address();
 
     /**
