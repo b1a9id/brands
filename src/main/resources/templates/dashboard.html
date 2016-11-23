@@ -1,0 +1,32 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" th:href="@{/webjars/Semantic-UI/2.1.8/semantic.min.css}"/>
+  <link rel="stylesheet" th:href="@{/static/css/style.css}"/>
+
+  <script th:src="@{/webjars/jquery/2.2.0/jquery.min.js}"></script>
+  <script th:src="@{/webjars/Semantic-UI/2.1.8/semantic.min.js}"></script>
+  <script th:src="@{/static/lib/jquery.sliphover.min.js}"></script>
+
+  <link rel="stylesheet" href="/static/lib/Semantic-UI/2.1.8/semantic.min.css"/>
+  <script src="/static/lib/jquery.min.js"></script>
+  <script src="/static/lib/Semantic-UI/2.1.8/semantic.min.js"></script>
+
+  <title>ダッシュボード</title>
+</head>
+<body>
+<div class="ui text container">
+  <!--<div colspan="4">-->
+    <!--<a th:href="@{/logout}"><div class="ui right floated small red labeled icon button"><i class="sign out icon"></i>ログアウト</div></a>-->
+  <!--</div>-->
+  <h2 class="ui header aligned blue">ダッシュボード</h2>
+  <div colspan="4">
+      <a th:href="@{/users}"><div class="ui floated small primary labeled icon button"><i class="user icon"></i>ユーザ一覧</div></a>
+  </div>
+  <div colspan="4">
+    <a th:href="@{/brands}"><div class="ui floated small primary labeled icon button"><i class="star icon"></i>ブランド一覧</div></a>
+  </div>
+</div>
+</body>
+</html>
