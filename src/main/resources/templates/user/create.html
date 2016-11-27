@@ -5,16 +5,16 @@
 <head>
   <meta charset="UTF-8"/>
   <link rel="stylesheet" th:href="@{/webjars/Semantic-UI/2.1.8/semantic.min.css}"/>
-  <link rel="stylesheet" th:href="@{/resources/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
   <script th:src="@{/webjars/jquery/2.2.0/jquery.min.js}"></script>
   <script th:src="@{/webjars/Semantic-UI/2.1.8/semantic.min.js}"></script>
-  <script th:src="@{/resources/lib/jquery.sliphover.min.js}"></script>
+  <script th:src="@{/lib/jquery.sliphover.min.js}"></script>
 
   <title>ユーザ新規登録</title>
-  <link rel="stylesheet" href="/static/resources/lib/Semantic-UI/2.1.8/semantic.min.css"/>
-  <script src="/static/resources/lib/jquery.min.js"></script>
-  <script src="/static/resources/lib/Semantic-UI/2.1.8/semantic.min.js"></script>
+  <link rel="stylesheet" href="/lib/Semantic-UI/2.1.8/semantic.min.css"/>
+  <script src="/lib/jquery.min.js"></script>
+  <script src="/lib/Semantic-UI/2.1.8/semantic.min.js"></script>
 </head>
 <body>
 <div class="ui text container">
@@ -30,20 +30,13 @@
       </div>
       <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">エラーメッセージ</p>
     </div>
-    <div class="field" th:classappend="${#fields.hasErrors('password')}? has-error">
-      <label class="ui blue header"><i class="lock icon"></i>パスワード</label>
-      <div class="ui input" th:classappend="${#fields.hasErrors('password')}? 'error'">
-        <input type="password" th:field="*{password}" name="" placeholder="パスワード" />
-      </div>
-      <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">エラーメッセージ</p>
-    </div>
-    <div class="field" th:classappend="${#fields.hasErrors('email')}? has-error">
-      <label class="ui blue header"><i class="mail icon"></i>メール</label>
-      <div class="ui input" th:classappend="${#fields.hasErrors('email')}? 'error'">
-        <input type="text" th:field="*{email}" name="" placeholder="メール" />
-      </div>
-      <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">エラーメッセージ</p>
-    </div>
+    <!--<div class="field" th:classappend="${#fields.hasErrors('password')}? has-error">-->
+      <!--<label class="ui blue header"><i class="lock icon"></i>パスワード</label>-->
+      <!--<div class="ui input" th:classappend="${#fields.hasErrors('password')}? 'error'">-->
+        <!--<input type="password" th:field="*{password}" name="" placeholder="パスワード" />-->
+      <!--</div>-->
+      <!--<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">エラーメッセージ</p>-->
+    <!--</div>-->
     <div class="field" th:classappend="${#fields.hasErrors('age')}? has-error">
       <label class="ui blue header"><i class="birthday icon"></i>年齢</label>
       <div class="ui input" th:classappend="${#fields.hasErrors('age')}? 'error'">
@@ -58,6 +51,20 @@
         <option th:each="gender : ${genders}" th:text="#{|user.field.gender.${gender}|}" th:value="${gender}"></option>
       </select>
       <p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">エラーメッセージ</p>
+    </div>
+    <div class="field" th:classappend="${#fields.hasErrors('address.zip')}? has-error">
+      <label class="ui blue header" th:text="#{address.field.zip.label}"><i class="birthday icon"></i>郵便番号</label>
+      <div class="ui input" th:classappend="${#fields.hasErrors('address.zip')}? 'error'">
+        <input type="text" th:field="*{address.zip}" name="" placeholder="郵便番号" />
+      </div>
+      <p th:if="${#fields.hasErrors('address.zip')}" th:errors="*{address.zip}">エラーメッセージ</p>
+    </div>
+    <div class="field" th:classappend="${#fields.hasErrors('address.prefecture')}? has-error">
+      <label class="ui blue header" th:text="#{address.field.prefecture.label}"><i class="birthday icon"></i>都道府県</label>
+      <div class="ui input" th:classappend="${#fields.hasErrors('address.prefecture')}? 'error'">
+        <input type="text" th:field="*{address.prefecture}" name="" placeholder="都道府県" />
+      </div>
+      <p th:if="${#fields.hasErrors('address.prefecture')}" th:errors="*{address.prefecture}">エラーメッセージ</p>
     </div>
     <button class="ui primary button" type="submit">保存</button>
     <a type="button" th:href="@{/users}" class="ui button" tabindex="0">キャンセル</a>

@@ -1,6 +1,9 @@
 package brands.core.entity;
 
+import brands.core.model.UserCreateRequest;
+import brands.core.model.UserEditRequest;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -17,7 +20,16 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class User extends AbstractEntity<Long> implements Serializable {
+
+    public User(String name, Integer age, Gender gender, Address address) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+    }
+
     /**
      * 名前
      */
@@ -48,4 +60,16 @@ public class User extends AbstractEntity<Long> implements Serializable {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @LazyCollection(LazyCollectionOption.EXTRA)
     private List<Brand> brands;
+
+    public static User generateUser(UserCreateRequest request) {
+        return generateUser(request.getName(), request.getAge(), request.getGender(), request.getAddress());
+    }
+
+    public static User generateUser(UserEditRequest request) {
+        return generateUser(request.getName(), request.getAge(), request.getGender(), request.getAddress());
+    }
+
+    private static User generateUser(String name, Integer age, Gender gender, Address address) {
+        return new User(name, age, gender, address);
+    }
 }
