@@ -3,8 +3,10 @@ package brands.web.controller.user;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class UserSearchForm {
+public class UserSearchForm implements Serializable {
 
 }
