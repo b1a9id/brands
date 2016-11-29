@@ -47,15 +47,15 @@ public class UserEditController {
     }
 
     @PostMapping
-    public String update(
-            @Validated @ModelAttribute(name = FORM_MODEL_KEY) UserEditForm form,
+    public String edit(
             @PathVariable Long id,
+            @Validated @ModelAttribute(name = FORM_MODEL_KEY) UserEditForm form,
             BindingResult errors,
             RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute(FORM_MODEL_KEY, form);
         redirectAttributes.addFlashAttribute(ERRORS_MODEL_KEYS, errors);
         if (errors.hasErrors()) {
-            return "redirect:/users/edit?error";
+            return "redirect:/users/edit/{id}?error";
         }
 
         User updatedUser = userService.edit(form.toUserEditRequest(), id);
