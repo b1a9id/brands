@@ -35,7 +35,7 @@ public class UserEditController {
         return Gender.values();
     }
 
-    @GetMapping()
+    @GetMapping
     public String input(Model model) {
         User user = (User) model.asMap().get(TARGET_ENTITY_KEY);
         UserEditForm form = (UserEditForm) model.asMap().get(FORM_MODEL_KEY);
@@ -47,8 +47,8 @@ public class UserEditController {
     }
 
     @PostMapping
-    public String edit(
-            @Validated @ModelAttribute(FORM_MODEL_KEY) UserEditForm form,
+    public String update(
+            @Validated @ModelAttribute(name = FORM_MODEL_KEY) UserEditForm form,
             @PathVariable Long id,
             BindingResult errors,
             RedirectAttributes redirectAttributes) {
