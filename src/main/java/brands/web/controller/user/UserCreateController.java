@@ -5,6 +5,7 @@ import brands.core.entity.User;
 import brands.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +25,20 @@ public class UserCreateController {
     @Autowired
     private UserService userService;
 
+    @ModelAttribute(FORM_MODEL_KEY)
+    public UserCreateForm setupUserCreateForm() {
+        return new UserCreateForm();
+    }
+
     @ModelAttribute("genders")
     public Gender[] setupGenders() {
         return Gender.values();
     }
 
     @GetMapping
-    public String input(@ModelAttribute(name = FORM_MODEL_KEY) UserCreateForm form) {
+    public String input(Model model) {
+        UserCreateForm form = (UserCreateForm) model.asMap().get(FORM_MODEL_KEY);
+        model.addAttribute("form", form);
         return "user/create";
     }
 
