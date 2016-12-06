@@ -1,7 +1,6 @@
 package brands.core.entity;
 
 import brands.core.model.UserCreateRequest;
-import brands.core.model.UserEditRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -62,10 +61,6 @@ public class User extends AbstractEntity<Long> implements Serializable {
     private List<Brand> brands;
 
     public static User generateUser(UserCreateRequest request) {
-        return generateUser(request.getName(), request.getAge(), request.getGender(), request.getAddress());
-    }
-
-    public static User generateUser(UserEditRequest request) {
         return generateUser(request.getName(), request.getAge(), request.getGender(), request.getAddress());
     }
 
