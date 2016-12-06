@@ -21,7 +21,6 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
 	@Override
 	public List<User> search(UserSearchRequest request) {
-		List<User> users;
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<User> query = builder.createQuery(User.class);
 		Root<User> root = query.from(User.class);
